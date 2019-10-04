@@ -101,4 +101,8 @@ ps
 migrate %the process ID% (from the list)
 getuid
 hashdump (it will work now)
+# we'll now background this session
+background
+# list our sessions
+sessions -l
 ```
