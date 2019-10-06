@@ -27,6 +27,9 @@ khgsjdgk865kn9gjrkjtyo9ujg:y689rkjhty
 ```
 ./hashcat64.bin -m 500 hash-and-salted-passwords.txt my-big-hashes-salted-ditionary.dict
 ```
+- for more information: 
+ - https://uwnthesis.wordpress.com/2013/08/07/kali-how-to-crack-passwords-using-hashcat/
+ - https://uwnthesis.files.wordpress.com/2013/08/hashtypes.png?w=497&h=333
 
 ## WORDLISTS
 - /usr/share/dirbuster/wordlists/directory-list....
