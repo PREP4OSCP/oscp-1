@@ -46,3 +46,11 @@ wine hyperion.exe reverse_shell_tcp_embedded.exe reverse_shell_tcp_embedded_cryp
 - Evasion => Generates Anti-Virus avoiding executables
 - Ordnance => Generates shellcode for supported payloads
 
+### costume code/payloads (not mainstreamd)
+- cross-compile any `c` code on kali linux
+``` 
+i686-w64-mingw32-c++ test.c -o test.exe
+```
+- use `pyinstaller` to convert `python script` to `exe`
+
+
