@@ -10,7 +10,7 @@ nmap -v -sn 10.11.1.1-254 -oG ping-sweep.txt
 grep Up ping-sweep.txt | cut -d " " -f 2 > live-hosts.txt
 ```
 
-2.1 search the network for port #53 (dns server)
+3. search the network for port #53 (dns server)
 ```
 nmap -p 53 10.11.1.1-255 -oG dns-sweep.txt
 cat dns-sweep.txt | grep open
@@ -21,9 +21,10 @@ also the following file `/etc/network/interfaces`
 dns-nameservers 10.11.1.220 8.8.8.8
 ```
 
-2. get all hostnames
-> tested - cli
+4. get all hostnames
 ```
 for ip in $(seq 1 254);do nslookup 10.11.1.$ip;done > nslookup.txt
 cat nslookup.txt | grep name > hostnames.txt
 ```
+5. locate interesting machines (by name)  
+`alpha...`
